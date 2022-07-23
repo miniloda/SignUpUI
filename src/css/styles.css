@@ -17,7 +17,7 @@ main{
 }
 .container{
     margin: 0 auto;
-    height: 650px;
+    height: 700px;
     width: 400px;
     background-color: white;
     border-radius: 20px;
@@ -145,7 +145,7 @@ button:hover{
     width: 100%;
     margin-top: 20px;
 }
-p{
+#third-party{
     margin: 0 auto;
     text-align: center;
     margin-top: 10px;

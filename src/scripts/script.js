@@ -1,7 +1,10 @@
 var images = document.getElementsByTagName("img");
 var button = document.getElementsByTagName("button")[0];
 var checkbox = document.querySelectorAll("input[type='checkbox']")[0];
-let passed = true;
+let namePassed ;
+let emailPassed ;
+let passwordPassed ;
+let termsPassed;
 document.querySelectorAll("input[type='text']")[0].focus();
 for (var i = 0; i < images.length; i++){
     images[i].addEventListener("click", function(){
@@ -11,7 +14,6 @@ for (var i = 0; i < images.length; i++){
 }
 
 button.addEventListener("click", function(){
-    passed = true;
     let name = document.querySelectorAll("input[type='text']")[0];
     let email = document.querySelectorAll('input[type = "email"]')[0];
     let password = document.querySelectorAll('input[type = "password"]')[0];
@@ -19,11 +21,12 @@ button.addEventListener("click", function(){
     checkName(name)
     checkTerms(checkbox);
     checkPassword(password);
-    if(passed ===true){
+    if(namePassed === true && termsPassed === true && emailPassed === true && passwordPassed === true){
     alert("Success!");
     window.location.reload();
     return true;
     }
+    console.log(namePassed, passwordPassed, emailPassed, termsPassed);
     return false;
 });
 
@@ -32,6 +35,9 @@ function checkEmail(email) {
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
     if (!filter.test(email.value)) {
+        if(emailPassed === false){
+            return false;
+        }else{
         let warning = document.createElement("p");
         warning.innerText = "Email is invalid";
         warning.textAlign = "left"
@@ -41,14 +47,18 @@ function checkEmail(email) {
         let div = document.getElementsByClassName("each-field")[1];
         div.style.marginBottom = "20px";
         email.focus();
-        passed = false;
+        emailPassed = false;
         return false;
+        }
  }
  return true;
 }
 function checkName(name){
     var filter = /^([a-zA-Z\-\.\,])+$/;
     if (!filter.test(name.value)) {
+        if(namePassed === false){
+            return false;
+        }else{
         let warning = document.createElement("p");
         warning.innerText = "Name must be only letters, whitespace, and '-.,'";
         warning.textAlign = "left"
@@ -60,13 +70,17 @@ function checkName(name){
         console.log(div)
         div.style.marginBottom = "20px";
         name.focus();
-        passed = false;
+        namePassed = false;
         return false;
+        }
     }
     return true;
 }
 function checkTerms(checkbox){
     if(!checkbox.checked){
+        if (termsPassed === false) {
+            return false;
+        }else{
        let box = document.getElementById("terms-conditions");
        box.style.textDecoration = 'underline';
        box.textDecorationColor = "red";
@@ -75,13 +89,17 @@ function checkTerms(checkbox){
        warning.style.color = "red";
        let referenceNode = document.getElementById("terms-conditions");
        insertAfter(warning, referenceNode);
+       termsPassed = false;
        return false;
-       passed = false;
+        }
     }
     return true;
 }
 function checkPassword(password){
     if (password.value.length < 6){
+        if(passwordPassed === false){
+            return false;
+        }else{
         let warning = document.createElement("p");
         warning.innerText = "Password must be greater than 6 characters";
         warning.textAlign = "left"
@@ -93,9 +111,11 @@ function checkPassword(password){
         console.log(div)
         div.style.marginBottom = "20px";
         password.focus();
-        passed = false;
+        passwordPassed = false;
         return false;
+        }
     }
+    return true;
 }
 function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
