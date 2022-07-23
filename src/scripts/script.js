@@ -1,6 +1,7 @@
 var images = document.getElementsByTagName("img");
 var button = document.getElementsByTagName("button")[0];
 var checkbox = document.querySelectorAll("input[type='checkbox']")[0];
+// Added 4 variables to track if the email, name, password, and terms are valid
 let namePassed ;
 let emailPassed ;
 let passwordPassed ;
@@ -23,21 +24,26 @@ button.addEventListener("click", function(){
     checkPassword(password);
     if(namePassed === true && termsPassed === true && emailPassed === true && passwordPassed === true){
     alert("Success!");
+    //Reload because why not. Resets the html
+    //OPTIMIZE:Don't rely on reloading html.
     window.location.reload();
     return true;
     }
     return false;
 });
 
-function checkEmail(email) {
-
+function checkEmail(email) { // TODO: ADD green check mark if email is valid and red x-mark if not
+    //Use regex for email validation
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     let referenceNode = document.querySelectorAll("input[type='email']")[0];
     let div = document.getElementsByClassName("each-field")[1];
     if (!filter.test(email.value)) {
+        //Here we use the same logic for all checks. Since we initialized all 4 check variables as undefined.
+        //Then if we find one that is false, we know that the check failed on the last check. However, if it is true or undefined,
         if(emailPassed === false){
             return false;
         }else{
+            //We need to add the elements for the warnings
         let warning = document.createElement("p");
         warning.innerText = "Email is invalid";
         warning.textAlign = "left"
@@ -49,7 +55,9 @@ function checkEmail(email) {
         return false;
         }
  }
+ //this only works if email is valid.
  if(emailPassed === false){
+    //Checks if the previous check is false. If it is false, then there are warnings in the html, we need to remove it
     let child = div.children[1];
     div.removeChild(child);
     div.style.marginBottom = "0px";
@@ -135,6 +143,8 @@ function checkPassword(password){
     return true;
 }
 function insertAfter(newNode, referenceNode) {
+    //insert after a div using referenceNode and the insertBefore method
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
     return true;
 }
+
