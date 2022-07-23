@@ -17,7 +17,7 @@ main{
 }
 .container{
     margin: 0 auto;
-    height: 550px;
+    height: 650px;
     width: 400px;
     background-color: white;
     border-radius: 20px;
@@ -42,7 +42,7 @@ form{
     margin-top: 40px;
 }
 form>div{
-    margin-bottom: 10px;
+    height: 60px;
 }
 
 .form-name{
@@ -53,6 +53,7 @@ form>div{
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
     padding: 10px;
+    margin-bottom : 0;
     width: 250px;
     box-shadow:  0 0 10px rgb(94, 94, 94);
 }
@@ -64,7 +65,7 @@ form>div{
 }
 .terms{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
@@ -172,6 +173,8 @@ p{
     -moz-transition: 0.3s ease;
     -ms-transition: 0.3s ease;
     -o-transition: 0.3s ease;
+    border: 1px solid rgba(119, 6, 119, 0.719);
+    padding: 10px;
 }
 .google-facebook-github>img:hover{
     transform:translateY(-3px);
@@ -183,3 +186,9 @@ p{
     align-items: center;
     justify-content: center;
 }
+@keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: 0.5rem; }
+    75% { margin-left: -0.5rem; }
+    100% { margin-left: 0rem; }
+  }
