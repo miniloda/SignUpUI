@@ -15,6 +15,11 @@ for (var i = 0; i < images.length; i++){
 }
 
 button.addEventListener("click", function(){
+    if(!(namePassed && emailPassed && passwordPassed && termsPassed)){
+        document.getElementsByClassName("container")[0].style.height = "700px";
+    }else{
+        document.getElementsByClassName("container")[0].style.height = "650px";
+    }
     let name = document.querySelectorAll("input[type='text']")[0];
     let email = document.querySelectorAll('input[type = "email"]')[0];
     let password = document.querySelectorAll('input[type = "password"]')[0];
@@ -113,7 +118,7 @@ function checkTerms(checkbox){
         }
     }
     if(termsPassed === false){
-        let child = div.children[1];
+        let child = div.children[2];
         div.removeChild(child);
         div.style.marginBottom = "0px";
         termsPassed = true;
