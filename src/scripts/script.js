@@ -26,14 +26,14 @@ button.addEventListener("click", function(){
     window.location.reload();
     return true;
     }
-    console.log(namePassed, passwordPassed, emailPassed, termsPassed);
     return false;
 });
 
 function checkEmail(email) {
 
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
+    let referenceNode = document.querySelectorAll("input[type='email']")[0];
+    let div = document.getElementsByClassName("each-field")[1];
     if (!filter.test(email.value)) {
         if(emailPassed === false){
             return false;
@@ -42,18 +42,24 @@ function checkEmail(email) {
         warning.innerText = "Email is invalid";
         warning.textAlign = "left"
         warning.style.color = "red";
-        let referenceNode = document.querySelectorAll("input[type='email']")[0];
         insertAfter(warning, referenceNode);
-        let div = document.getElementsByClassName("each-field")[1];
         div.style.marginBottom = "20px";
         email.focus();
         emailPassed = false;
         return false;
         }
  }
+ if(emailPassed === false){
+    let child = div.children[1];
+    div.removeChild(child);
+    div.style.marginBottom = "0px";
+    emailPassed = true;
+}
  return true;
 }
 function checkName(name){
+    let referenceNode = document.querySelectorAll("input[type='text']")[0];
+    let div = document.getElementsByClassName("each-field")[0];
     var filter = /^([a-zA-Z\-\.\,])+$/;
     if (!filter.test(name.value)) {
         if(namePassed === false){
@@ -64,19 +70,24 @@ function checkName(name){
         warning.textAlign = "left"
         warning.style.color = "red";
         warning.style.marginTop = "100";
-        let referenceNode = document.querySelectorAll("input[type='text']")[0];
         insertAfter(warning, referenceNode);
-        let div = document.getElementsByClassName("each-field")[0];
-        console.log(div)
+
         div.style.marginBottom = "20px";
         name.focus();
         namePassed = false;
         return false;
         }
     }
+    if(namePassed === false){
+        let child = div.children[1];
+        div.removeChild(child);
+        div.style.marginBottom = "0px";
+        namePassed = true;
+    }
     return true;
 }
 function checkTerms(checkbox){
+    let div = document.getElementsByClassName("terms")[0];
     if(!checkbox.checked){
         if (termsPassed === false) {
             return false;
@@ -92,6 +103,12 @@ function checkTerms(checkbox){
        termsPassed = false;
        return false;
         }
+    }
+    if(termsPassed === false){
+        let child = div.children[1];
+        div.removeChild(child);
+        div.style.marginBottom = "0px";
+        termsPassed = true;
     }
     return true;
 }
