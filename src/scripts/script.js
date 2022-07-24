@@ -31,7 +31,8 @@ for (let i = 0; i < inputs.length; i++) {
 document.querySelectorAll("input[type='text']")[0].focus();
 for (var i = 0; i < images.length; i++){
     images[i].addEventListener("click", function(){
-        alert("Doesn't work without backend :>");
+        //When image is clicked, it will redirect to oauth.html in a new page
+        window.open("oauth.html", "_blank");
         return true;
     });
 }
@@ -76,7 +77,7 @@ function checkEmail(email) { // TODO: ADD green check mark if email is valid and
         warning.textAlign = "left"
         warning.style.color = "red";
         insertAfter(warning, referenceNode);
-        div.style.marginBottom = "20px";
+        div.style.marginBottom = "30px";
         email.focus();
         emailPassed = false;
         return false;
@@ -107,7 +108,7 @@ function checkName(name){
         warning.style.marginTop = "100";
         insertAfter(warning, referenceNode);
 
-        div.style.marginBottom = "20px";
+        div.style.marginBottom = "30px";
         name.focus();
         namePassed = false;
         return false;
