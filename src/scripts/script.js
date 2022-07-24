@@ -6,6 +6,28 @@ let namePassed ;
 let emailPassed ;
 let passwordPassed ;
 let termsPassed;
+let inputs = document.querySelectorAll("input");
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("blur", function () {
+        if (inputs[i].type === "email") {
+            checkEmail(inputs[i]);
+        } else if (inputs[i].type === "text") {
+            checkName(inputs[i]);
+        } else if (inputs[i].type === "password") {
+            checkPassword(inputs[i]);
+        }
+    }
+    );
+    // add event listener for enter
+    inputs[i].addEventListener("keyup", function (event) {
+        console.log(event.keyCode);
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("submit").click();
+        }
+    });
+}
+
 document.querySelectorAll("input[type='text']")[0].focus();
 for (var i = 0; i < images.length; i++){
     images[i].addEventListener("click", function(){
