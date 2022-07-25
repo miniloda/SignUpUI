@@ -156,7 +156,7 @@ function checkTerms(checkbox){
 }
 function checkPassword(password){
     let referenceNode = document.querySelectorAll("input[type='password']")[0];
-        insertAfter(warning, referenceNode);
+  
         let div = document.getElementsByClassName("each-field")[2];
     if (password.value.length < 6){
         if(passwordPassed === false){
@@ -167,7 +167,7 @@ function checkPassword(password){
         warning.textAlign = "left"
         warning.style.color = "red";
         warning.style.marginTop = "100";
-        
+        insertAfter(warning, referenceNode);
         div.style.marginBottom = "20px";
         password.focus();
         passwordPassed = false;
