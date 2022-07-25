@@ -175,7 +175,7 @@ function checkPassword(password){
         }
     }
     if(passwordPassed === false){
-            let child = div.children[2];
+            let child = div.children[1];
             div.removeChild(child);
             div.style.marginBottom = "0px";
             
