@@ -126,6 +126,7 @@ button:hover{
     width: 200px;
     box-shadow:  0 0 10px rgb(94, 94, 94);
 }
+/* REFACTOR :  dont use background so that it wont get removed when being autofilled */
 .name{
     padding-left: 30px;
   background: url("../img/circle-user-solid.svg") no-repeat scroll 7px 7px;

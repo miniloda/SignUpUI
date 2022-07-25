@@ -65,6 +65,9 @@ button.addEventListener("click", function(){
 
 function checkEmail(email) { // TODO: ADD green check mark if email is valid and red x-mark if not
     //Use regex for email validation
+    if(email.value.length===0){
+        return false;
+    }
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     let referenceNode = document.querySelectorAll("input[type='email']")[0];
     let div = document.getElementsByClassName("each-field")[1];
@@ -97,6 +100,9 @@ emailPassed = true;
  return true;
 }
 function checkName(name){
+    if(name.value.length===0){
+        return false;
+    }
     let referenceNode = document.querySelectorAll("input[type='text']")[0];
     let div = document.getElementsByClassName("each-field")[0];
     var filter = /^([a-zA-Z]*[\ \-\.\,]*)+$/;
@@ -153,6 +159,9 @@ function checkTerms(checkbox){
     return true;
 }
 function checkPassword(password){
+    if(password.value.length===0){
+        return false;
+    }
     let referenceNode = document.querySelectorAll("input[type='password']")[0];
   
         let div = document.getElementsByClassName("each-field")[2];
