@@ -139,6 +139,7 @@ function checkTerms(checkbox){
        let warning = document.createElement("p");
        warning.innerText = "Please check terms and conditions";
        warning.style.color = "red";
+       warning.style.marginTop = 0;
        let referenceNode = document.getElementById("terms-conditions");
        insertAfter(warning, referenceNode);
        termsPassed = false;
