@@ -1,6 +1,5 @@
 *{
     font-size: 16px;
-    
 }
 body, html{
     margin:0;
@@ -91,6 +90,7 @@ input[type="checkbox"] {
     justify-content: center;
     margin-top: 10px;
 }
+
 button{
     background-color: #bc6df0;
     border: none;
@@ -127,6 +127,18 @@ button:hover{
     box-shadow:  0 0 10px rgb(94, 94, 94);
 }
 /* REFACTOR :  dont use background so that it wont get removed when being autofilled */
+/* .each-field{
+    display: inline-block;
+    margin-left:-25px;
+}
+.each-field::before{
+    content: "";
+    background: url(../img/circle-user-solid.svg) no-repeat scroll 0px 0px;
+    background-size: 20px 20px;
+    padding-left: 30px;
+    position: relative;
+    left: 15%;
+} */
 .name{
     padding-left: 30px;
   background: url("../img/circle-user-solid.svg") no-repeat scroll 7px 7px;
@@ -211,3 +223,10 @@ button:hover{
     } */
 /* } */ */
     
+.form-control:-webkit-autofill,
+.form-control:-webkit-autofill:hover,
+.form-control:-webkit-autofill:focus,
+.form-control:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    box-shadow: 0 0 0 30px white inset !important;
+}

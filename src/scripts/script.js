@@ -1,6 +1,6 @@
 // REFACTOR: change the three function so that
 // they use queryselectorall to get the elements
-
+var buttonPressed;
 var images = document.getElementsByTagName("img");
 var button = document.getElementsByTagName("button")[0];
 var checkbox = document.querySelectorAll("input[type='checkbox']")[0];
@@ -41,6 +41,7 @@ for (var i = 0; i < images.length; i++){
 }
 
 button.addEventListener("click", function(){
+    buttonPressed = true;
     if(!(namePassed && emailPassed && passwordPassed && termsPassed)){
         document.getElementsByClassName("container")[0].style.height = "700px";
     }else{
@@ -58,14 +59,16 @@ button.addEventListener("click", function(){
     //Reload because why not. Resets the html
     //OPTIMIZE:Don't rely on reloading html.
     window.location.reload();
+    buttonPressed = false;
     return true;
     }
+    buttonPressed = false;
     return false;
 });
 
 function checkEmail(email) { // TODO: ADD green check mark if email is valid and red x-mark if not
     //Use regex for email validation
-    if(email.value.length===0){
+    if(email.value.length===0 && !buttonPressed){
         return false;
     }
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -100,18 +103,27 @@ emailPassed = true;
  return true;
 }
 function checkName(name){
-    if(name.value.length===0){
+    if(name.value.length===0 && !buttonPressed){
         return false;
     }
     let referenceNode = document.querySelectorAll("input[type='text']")[0];
     let div = document.getElementsByClassName("each-field")[0];
-    var filter = /^([a-zA-Z]*[\ \-\.\,]*)+$/;
-    if (!filter.test(name.value)) {
+    var filter = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+    //Characters supported abcdefghijklmnopqrstwxyz
+//ABCDEFGHIJKLMNOPQRSTUVWXYZ
+//áéíóúäëïöüÄ'
+//陳大文
+//łŁőŐűŰZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųū
+//ÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁ
+//ŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ.-
+//ñÑâê都道府県Федерации
+//আবাসযোগ্য জমির걸쳐 있는
+    if (!filter.test(name.value) || name.value.length === 0) {
         if(namePassed === false){
             return false;
         }else{
         let warning = document.createElement("p");
-        warning.innerText = "Name must be only letters, whitespace, and '-.,'";
+        warning.innerText = "Name must be only letters ,whitespace, and '-.,'";
         warning.textAlign = "left"
         warning.style.color = "red";
         warning.style.marginTop = "100";
@@ -159,7 +171,7 @@ function checkTerms(checkbox){
     return true;
 }
 function checkPassword(password){
-    if(password.value.length===0){
+    if(password.value.length===0 && !buttonPressed){
         return false;
     }
     let referenceNode = document.querySelectorAll("input[type='password']")[0];
