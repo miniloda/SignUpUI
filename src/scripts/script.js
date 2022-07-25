@@ -122,7 +122,6 @@ function checkName(name){
         let child = div.children[1];
         div.removeChild(child);
         div.style.marginBottom = "0px";
-      
     }
     namePassed = true;
     return true;
@@ -156,6 +155,9 @@ function checkTerms(checkbox){
     return true;
 }
 function checkPassword(password){
+    let referenceNode = document.querySelectorAll("input[type='password']")[0];
+        insertAfter(warning, referenceNode);
+        let div = document.getElementsByClassName("each-field")[2];
     if (password.value.length < 6){
         if(passwordPassed === false){
             return false;
@@ -165,9 +167,7 @@ function checkPassword(password){
         warning.textAlign = "left"
         warning.style.color = "red";
         warning.style.marginTop = "100";
-        let referenceNode = document.querySelectorAll("input[type='password']")[0];
-        insertAfter(warning, referenceNode);
-        let div = document.getElementsByClassName("each-field")[2];
+        
         div.style.marginBottom = "20px";
         password.focus();
         passwordPassed = false;
