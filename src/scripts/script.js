@@ -1,3 +1,6 @@
+// REFACTOR: change the three function so that
+// they use queryselectorall to get the elements
+
 var images = document.getElementsByTagName("img");
 var button = document.getElementsByTagName("button")[0];
 var checkbox = document.querySelectorAll("input[type='checkbox']")[0];
@@ -89,8 +92,9 @@ function checkEmail(email) { // TODO: ADD green check mark if email is valid and
     let child = div.children[1];
     div.removeChild(child);
     div.style.marginBottom = "0px";
-    emailPassed = true;
+    
 }
+emailPassed = true;
  return true;
 }
 function checkName(name){
@@ -118,8 +122,9 @@ function checkName(name){
         let child = div.children[1];
         div.removeChild(child);
         div.style.marginBottom = "0px";
-        namePassed = true;
+      
     }
+    namePassed = true;
     return true;
 }
 function checkTerms(checkbox){
@@ -144,8 +149,9 @@ function checkTerms(checkbox){
         let child = div.children[2];
         div.removeChild(child);
         div.style.marginBottom = "0px";
-        termsPassed = true;
+        
     }
+    termsPassed = true;
     return true;
 }
 function checkPassword(password){
@@ -161,13 +167,19 @@ function checkPassword(password){
         let referenceNode = document.querySelectorAll("input[type='password']")[0];
         insertAfter(warning, referenceNode);
         let div = document.getElementsByClassName("each-field")[2];
-        console.log(div)
         div.style.marginBottom = "20px";
         password.focus();
         passwordPassed = false;
         return false;
         }
     }
+    if(passwordPassed === false){
+            let child = div.children[2];
+            div.removeChild(child);
+            div.style.marginBottom = "0px";
+            
+    }
+    passwordPassed = true;
     return true;
 }
 function insertAfter(newNode, referenceNode) {
