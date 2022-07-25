@@ -92,7 +92,6 @@ function checkEmail(email) { // TODO: ADD green check mark if email is valid and
     let child = div.children[1];
     div.removeChild(child);
     div.style.marginBottom = "0px";
-    
 }
 emailPassed = true;
  return true;
@@ -100,7 +99,7 @@ emailPassed = true;
 function checkName(name){
     let referenceNode = document.querySelectorAll("input[type='text']")[0];
     let div = document.getElementsByClassName("each-field")[0];
-    var filter = /^([a-zA-Z\-\.\,])+$/;
+    var filter = /^([a-zA-Z]*[\ \-\.\,]*)+$/;
     if (!filter.test(name.value)) {
         if(namePassed === false){
             return false;
@@ -149,7 +148,6 @@ function checkTerms(checkbox){
         let child = div.children[2];
         div.removeChild(child);
         div.style.marginBottom = "0px";
-        
     }
     termsPassed = true;
     return true;
@@ -178,7 +176,6 @@ function checkPassword(password){
             let child = div.children[1];
             div.removeChild(child);
             div.style.marginBottom = "0px";
-            
     }
     passwordPassed = true;
     return true;
